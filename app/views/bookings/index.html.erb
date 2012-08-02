@@ -1,0 +1,13 @@
+<div id="calendar">
+  <h2 id="month">
+    <%= link_to "<", month:(@date.beginning_of_month-1).strftime("%Y/%m") %>
+    <%= "#{t('date.abbr_month_names')[@date.strftime("%m_").to_i]} #{@date.strftime("%Y")}" %>
+    <%= link_to ">", month:(@date.end_of_month+1).strftime("%Y/%m") %>
+  </h2>
+  <%= calendar_for @bookings, year:@date.year, month:@date.month do |calendar| %>
+    <%= calendar.head(t('date.day_names')[0], t('date.day_names')[1], t('date.day_names')[2], t('date.day_names')[3], t('date.day_names')[4], t('date.day_names')[5], t('date.day_names')[6]) %>
+    <% calendar.day(:day_method => :reserved_on) do |date, bookings| %>
+      <%= link_to date.day %>
+    <% end %>
+  <% end %>
+</div>
