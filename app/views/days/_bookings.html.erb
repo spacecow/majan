@@ -1,11 +1,17 @@
 <div id="schedule">
   <div id="tables">
-    <% day.tables.each do |table| %>
+    <% day.tables.each_with_index do |table,i| %>
       <div class="table">
+        <%= t(:table,no:i+1) %>
       </div>
     <% end %>
   </div>
   <div id="bookings">
-    <%# render bookings %>
+    <% day.tables.each_with_index do |table,i| %>
+      <% table.bookings.each do |booking| %>
+        <div class="booking" <%= Booking.style(i,booking) %>>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

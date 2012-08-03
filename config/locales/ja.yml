@@ -2,6 +2,8 @@ ja:
   booking: 予約
   labels:
     new: 新しい%{o}
+  table: テーブル %{no}
+
   simple_form:
     labels:
       booking:
@@ -12,12 +14,14 @@ ja:
     select:
       prompt: 選択してください。
     submit:
-      cancel: キャンセル
       create: 登録する
       submit: 保存する
       update: 更新する
+
       booking:
         create: 予約する
+      cancel: キャンセル
+      reserve: 予約する
 
   date:
     abbr_day_names:

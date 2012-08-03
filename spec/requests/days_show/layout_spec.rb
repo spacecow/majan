@@ -29,16 +29,17 @@ describe "Day show" do
     end
   end
 
-  #context "with booking on right day" do
-  #  before(:each) do
-  #    FactoryGirl.create(:booking, reserved_on:Date.parse('2012-7-2'))
-  #    visit day_path(@day)
-  #  end
+  context "with booking on right day" do
+    before(:each) do
+      @day.available_table.bookings << FactoryGirl.create(:booking)
+#, reserved_on:Date.parse('2012-7-2'))
+      visit day_path(@day)
+    end
 
-  #  it "one class for each booking" do
-  #    div(:bookings).divs_no(:booking).should be(1)
-  #  end
-  #end
+    it "one class for each booking", focus:true do
+      div(:bookings).divs_no(:booking).should be(1)
+    end
+  end
 
   #context "with booking on wrong day" do
   #  before(:each) do

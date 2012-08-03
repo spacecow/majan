@@ -6,11 +6,24 @@ div#main_container
   background: blue
 
 div#schedule
-  height: 200px
-  width: 700px
+  height: 160px
+  width: 660px
   margin: 0 auto
   background: green
+  padding: 20px
   +border-radius(20px)
+  div#tables
+    float: left
+    div.table
+      height: 20px
+  div#bookings
+    float: left
+    div.booking
+      position: relative
+      top: 120px
+      width: 100px
+      height: 10px
+      background: red
 
 form
   input.btn
