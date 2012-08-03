@@ -2,4 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  booking: Booking
+  labels:
+    new: New %{o}
+  simple_form:
+    labels:
+      booking:
+        reserved_on: Date
+  helpers:
+    submit:
+      booking:
+        create: Book
+      cancel: Cancel
+      reserve: Reserve

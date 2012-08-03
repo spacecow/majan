@@ -1,4 +1,24 @@
 ja:
+  booking: 予約
+  labels:
+    new: 新しい%{o}
+  simple_form:
+    labels:
+      booking:
+        end_at: 終了時間
+        reserved_on: 予約日
+        start_at: 開始時間
+  helpers:
+    select:
+      prompt: 選択してください。
+    submit:
+      cancel: キャンセル
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+      booking:
+        create: 予約する
+
   date:
     abbr_day_names:
     - 日
@@ -124,13 +144,6 @@ ja:
       header:
         one: ! '%{model}にエラーが発生しました。'
         other: ! '%{model}に%{count}つのエラーが発生しました。'
-  helpers:
-    select:
-      prompt: 選択してください。
-    submit:
-      create: 登録する
-      submit: 保存する
-      update: 更新する
   number:
     currency:
       format:
