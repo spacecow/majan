@@ -1,0 +1,8 @@
+<%= title @day %>
+
+<%= render 'bookings', bookings:@bookings %>
+
+<%= form_tag new_booking_path, :method => :get do %>
+  <%= hidden_field_tag :day, @day %>
+  <%= submit_tag 'Reserve' %>
+<% end %>

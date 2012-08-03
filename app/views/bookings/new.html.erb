@@ -1,0 +1,11 @@
+<%= title new(:booking) %>
+
+<%= simple_form_for @booking do |f| %>
+  <%= label_tag :date %>
+  <%= text_field_tag :date, @date %>
+  <%= f.input :start_at, :as => :string, wrapper_html:{id:'start_at'} %>
+  <%= f.input :end_at, :as => :string, wrapper_html:{id:'end_at'} %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= button_to t('helpers.submit.cancel'), day_path(@date), :method => :get %>

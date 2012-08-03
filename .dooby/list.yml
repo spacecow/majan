@@ -1,0 +1,5 @@
+--- 
+4d1adc: !ruby/object:Dooby::Task 
+  todo: end time must be later than start time
+105aea: !ruby/object:Dooby::Task 
+  todo: change detail to day :done
