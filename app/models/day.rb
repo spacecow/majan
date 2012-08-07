@@ -1,18 +1,8 @@
 class Day < ActiveRecord::Base
-  has_many :tables
+  has_many :bookings
+  has_many :majan_tables, :through => :bookings
 
   attr_accessible :date
 
-  before_create :generate_tables
-
-  def available_table; tables.first end
   def to_param; date end
-
-  private
-
-    def generate_tables
-      8.times do |i|
-        tables.build(no:i+1)
-      end
-    end
 end

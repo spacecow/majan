@@ -6,7 +6,7 @@
   </h2>
   <%= calendar_for @bookings, year:@month.year, month:@month.month do |calendar| %>
     <%= calendar.head(t('date.day_names')[0], t('date.day_names')[1], t('date.day_names')[2], t('date.day_names')[3], t('date.day_names')[4], t('date.day_names')[5], t('date.day_names')[6]) %>
-    <% calendar.day(:day_method => :reserved_on) do |date, bookings| %>
+    <% calendar.day(:day_method => :created_at) do |date, bookings| %>
       <%= link_to date.day, day_path(:id => date.strftime("%Y-%m-%d")) %>
     <% end %>
   <% end %>

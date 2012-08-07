@@ -12,6 +12,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer', :platforms => :ruby
   gem 'compass-rails'
+  gem "fancy-buttons", :git => 'https://github.com/imathis/fancy-buttons.git'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 end

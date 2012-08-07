@@ -11,11 +11,11 @@ class BookingsController < ApplicationController
 
   def create
     @date = params[:date]
-    day = Day.find_or_create_by_date(@date) 
-    @booking = day.available_table.bookings.build(params[:booking])
+    @booking = Booking.book(params[:booking], @date)
     if @booking.save
       redirect_to day_path(@date)
     else
+      flash[:alert] = 'No table is available.' if @booking.errors[:start_at].empty? and @booking.errors[:end_at].empty?
       render :new
     end
   end

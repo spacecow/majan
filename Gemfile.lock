@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/imathis/fancy-buttons.git
+  revision: 93113c137ef1a24ab34d7a95930e0d247cc776ef
+  specs:
+    fancy-buttons (1.1.1)
+      compass (>= 0.11)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -186,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   factory_girl_rails
+  fancy-buttons!
   guard
   guard-rspec
   guard-spork

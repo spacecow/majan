@@ -21,6 +21,7 @@ ja:
       booking:
         create: 予約する
       cancel: キャンセル
+      calendar: カレンダー
       reserve: 予約する
 
   date:

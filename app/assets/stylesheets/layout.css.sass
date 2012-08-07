@@ -1,31 +1,82 @@
 @import "compass/css3/border-radius"
+@import "fancy-buttons"
+
+
+html
+  background: #4B7399
+
+div.clear
+  clear: both
+  height: 0
+  overflow: hidden
 
 div#main_container
   width: 800px
   margin: 100px auto 0 auto
-  background: blue
+  background: #bbb
+  border: 10px solid white
+  +border-radius(10px)
+
+div#page
+  width: 660px
+  margin: 20px auto
+  
 
 div#schedule
-  height: 160px
-  width: 660px
-  margin: 0 auto
-  background: green
+  background: #999
   padding: 20px
+  border: 5px solid white
   +border-radius(20px)
+  div.blank_hour
+    float: left
+    width: 106px
+    border-bottom: 1px solid #999
+  div.hour
+    font-size: 12px
+    width: 50px
+    text-align: right
+    float: left
   div#tables
+    margin-right: 10px
     float: left
+    border: 2px solid #999
     div.table
-      height: 20px
+      border-bottom: 1px solid #999 
+      vertical-align: middle
   div#bookings
+    background-image: url('timeline.gif')
     float: left
+    width: 500px
+    height: 188px
+    border: 2px solid black
+    +border-radius(10px)
+    div.line
+      float: left
+      width: 500px
+      border-bottom: 1px solid black
     div.booking
       position: relative
-      top: 120px
-      width: 100px
       height: 10px
       background: red
 
 form
-  input.btn
+  label
+    width: 100px
     float: left
-
+    text-align: right
+    margin: 8px 5px 0 0 
+    font-size: 18px
+    font-weight: bold
+  input
+    @include fancy-button(gray)
+  input.string
+    width: 300px
+  input.submit
+    margin-top: 20px
+    float: left
+    @include fancy-button(green)
+    height: 35px
+  input.cancel
+    margin-top: 20px
+    @include fancy-button(#2966a8)
+    height: 35px

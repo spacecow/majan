@@ -2,10 +2,12 @@
 
 <%= simple_form_for @booking do |f| %>
   <%= label_tag :date %>
-  <%= text_field_tag :date, @date %>
+  <%= text_field_tag :date, @date, :class => :string %>
   <%= f.input :start_at, :as => :string, wrapper_html:{id:'start_at'} %>
   <%= f.input :end_at, :as => :string, wrapper_html:{id:'end_at'} %>
-  <%= f.button :submit %>
+  <%= f.button :submit, :class => :submit %>
 <% end %>
 
-<%= button_to t('helpers.submit.cancel'), day_path(@date), :method => :get %>
+<%= button_to t('helpers.submit.cancel'), day_path(@date), {:method => :get, :class => :cancel} %>
+
+<div class="clear">

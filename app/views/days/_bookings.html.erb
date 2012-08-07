@@ -1,17 +1,36 @@
-<div id="schedule">
-  <div id="tables">
-    <% day.tables.each_with_index do |table,i| %>
-      <div class="table">
-        <%= t(:table,no:i+1) %>
-      </div>
-    <% end %>
-  </div>
-  <div id="bookings">
-    <% day.tables.each_with_index do |table,i| %>
-      <% table.bookings.each do |booking| %>
-        <div class="booking" <%= Booking.style(i,booking) %>>
+<% present @day do |presenter| %>
+  <div id="schedule">
+    <div class="blank_hour"></div>
+    <div class="hour">9:00</div>
+    <div class="hour">10:00</div>
+    <div class="hour">11:00</div>
+    <div class="hour">12:00</div>
+    <div class="hour">13:00</div>
+    <div class="hour">14:00</div>
+    <div class="hour">15:00</div>
+    <div class="hour">16:00</div>
+    <div class="hour">17:00</div>
+    <div class="clear"></div>
+    <div id="tables">
+      <% height = 0 %>
+      <% MajanTable.all.each_with_index do |table,i| %>
+        <div class="table" <%= presenter.table_style(@hash[i]) %>>
+          <%= t(:table,no:i+1) %>
+          <% height += @hash[i].nil? ? 21 : (@hash[i].count-1)*10+21 %>
         </div>
       <% end %>
-    <% end %>
+    </div>
+    <div id="bookings" style="height: <%= height %>px;">
+      <% MajanTable.count.times do |i| %>
+        <div class="line" <%= presenter.table_style(@hash[i]) %>></div>
+      <% end %>
+      <% @hash.keys.each do |table_no| %>
+        <% @hash[table_no].each_with_index do |booking,i| %>
+          <div class="booking" <%= presenter.booking_style(table_no,i,booking) %>>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="clear"></div>
   </div>
-</div>
+<% end %>

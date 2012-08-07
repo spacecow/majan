@@ -1,9 +1,10 @@
 class CreateBookings < ActiveRecord::Migration
   def change
     create_table :bookings do |t|
-      t.integer :table_id
-      t.time :start_at
-      t.time :end_at
+      t.integer :majan_table_id
+      t.integer :day_id
+      t.datetime :start_at
+      t.datetime :end_at
 
       t.timestamps
     end
