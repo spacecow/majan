@@ -5,7 +5,9 @@
   todo: add name to booking :done
 105aea: !ruby/object:Dooby::Task 
   todo: change detail to day :done
-437c22: !ruby/object:Dooby::Task 
-  todo: display bookings on schedule
 f4cafa: !ruby/object:Dooby::Task 
   todo: change back to detail :done
+3a015e: !ruby/object:Dooby::Task 
+  todo: no table is available, not visible on normal error
+6d37f3: !ruby/object:Dooby::Task 
+  todo: display bookings on schedule :done

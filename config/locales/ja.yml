@@ -1,5 +1,7 @@
 ja:
-  booking: 予約
+  booking: 
+    one: 予約
+    other: 予約s
   labels:
     new: 新しい%{o}
   table: テーブル %{no}
