@@ -10,7 +10,7 @@ describe "Bookings new" do
   end
 
   it "has the date field filled in" do
-    value('Date').should eq '2012-07-02'
+    value('* Date').should eq '2012-07-02'
   end
 
   it "has the start time left blank" do

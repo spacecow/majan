@@ -5,17 +5,22 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
     @date = Date.parse(params[:date])
+    @booking = Booking.new(date:@date)
   end
 
   def create
-    @date = params[:date]
-    @booking = Booking.book(params[:booking], @date)
-    if @booking.save
-      redirect_to detail_bookings_path(date:@date)
+    Booking.correct_time!(params)
+    @booking = Booking.new(params[:booking])
+    if @booking.valid?
+      if @booking.book
+        @booking.save
+        redirect_to detail_bookings_path(date:@booking.date)
+      else
+        flash[:alert] = alertify(:no_table_available) 
+        render :new
+      end
     else
-      flash[:alert] = 'No table is available.' if @booking.errors[:start_at].empty? and @booking.errors[:end_at].empty?
       render :new
     end
   end

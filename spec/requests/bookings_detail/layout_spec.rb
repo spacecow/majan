@@ -22,7 +22,7 @@ describe "Bookings detail" do
       page.should have_button('Reserve')
       click_button 'Reserve'
       page.current_path.should eq new_booking_path
-      value('Date').should eq '2012-07-02'
+      value('* Date').should eq '2012-07-02'
     end
   end
 

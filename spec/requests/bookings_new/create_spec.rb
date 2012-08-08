@@ -22,7 +22,7 @@ describe "Bookings new" do
       end
       it "displays flash" do
         click_button 'Book'
-        page.should have_alert('No table is available.') 
+        page.should_not have_alert('No table is available.') 
       end
     end
 
@@ -44,7 +44,7 @@ describe "Bookings new" do
       end
       it "displays flash" do
         click_button 'Book'
-        page.should have_alert('No table is available.') 
+        page.should have_alert('No table is available for that time interval.') 
       end
     end
   end
@@ -126,11 +126,25 @@ describe "Bookings new" do
     end
   end
 
-  context "error" do
+  context "error with pre-existing booking" do
+    before(:each) do
+      FactoryGirl.create(:booking, date:Date.parse('2012-7-2'))
+    end
+
     it "start at cannot be left blank" do
       fill_in 'Start at', with:''
       click_button 'Book'
       div(:start_at).should have_blank_error
+    end
+    it "start has to be >= 8am" do
+      fill_in 'Start at', with:'7:00'
+      click_button 'Book'
+      div(:start_at).should have_error "must be greater than or equal to  8:00"
+    end
+    it "start has to be <= 18am" do
+      fill_in 'Start at', with:'19:00'
+      click_button 'Book'
+      div(:start_at).should have_error "must be less than or equal to 18:00"
     end
 
     it "end at cannot be left blank" do
@@ -138,11 +152,21 @@ describe "Bookings new" do
       click_button 'Book'
       div(:end_at).should have_blank_error
     end
+    it "end has to be >= 8am" do
+      fill_in 'End at', with:'7:00'
+      click_button 'Book'
+      div(:end_at).should have_error "must be greater than or equal to  8:00"
+    end
+    it "end has to be <= 18am" do
+      fill_in 'End at', with:'19:00'
+      click_button 'Book'
+      div(:end_at).should have_error "must be less than or equal to 18:00"
+    end
 
     it "displays no flash" do
       fill_in 'Start at', with:''
       click_button 'Book'
-      page.should_not have_alert('No table is available.') 
+      page.should_not have_alert('No table is available for that time interval.') 
     end
   end
 end

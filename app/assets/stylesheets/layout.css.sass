@@ -1,6 +1,11 @@
 @import "compass/css3/border-radius"
 @import "fancy-buttons"
 
+$flash_width: 300px
+$alert_dark: #933
+$notice_dark: #396
+$alert_light: #f33
+$notice_light: #4CC417
 
 html
   background: #4B7399
@@ -16,6 +21,30 @@ div#main_container
   background: #bbb
   border: 10px solid white
   +border-radius(10px)
+
+@mixin custom_gradient($light, $dark, $corner: 10px)
+  color: white
+  font-weight: bold
+  padding: 5px
+  +border-radius($corner)
+  +background-image(linear-gradient(color-stops($light, $dark)))
+
+div#flash_notice
+  float: left  
+  width: $flash_width
+  text-align: center
+  margin-bottom: 10px 
+  padding: 3px 10px
+  border: 1px solid black
+  +custom_gradient($notice_light,$notice_dark)
+div#flash_alert
+  float: left
+  width: $flash_width
+  text-align: center
+  margin-bottom: 10px
+  padding: 3px 10px
+  border: 1px solid black
+  +custom_gradient($alert_light,$alert_dark)
 
 div#page
   width: 660px
@@ -88,6 +117,7 @@ form
     font-weight: bold
   input
     @include fancy-button(gray)
+    cursor: text
   input.string
     width: 300px
   input.submit
@@ -99,3 +129,6 @@ form
     margin-top: 20px
     @include fancy-button(#2966a8)
     height: 35px
+  span.error
+    margin-left: 10px
+    color: red

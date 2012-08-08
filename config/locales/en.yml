@@ -5,15 +5,21 @@ en:
   booking:
     one: Booking
     other: Bookings
+
   labels:
     new: New %{o}
+
   simple_form:
     labels:
       booking:
         reserved_on: Date
+
   helpers:
     submit:
       booking:
         create: Book
       cancel: Cancel
       reserve: Reserve
+
+  alerts:
+    no_table_available: "No table is available for that time interval."

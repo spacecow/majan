@@ -1,7 +1,7 @@
 class BookingPresenter < BasePresenter
   TABLE_BASE_HEIGHT = 20
   TABLE_INC_HEIGHT = 10
-  BASE_TIME = Time.zone.parse('8:000')
+  BASE_TIME = Time.zone.parse('8:00')
   UNIT_WIDTH = 50 
 
   def table_style(bookings)
@@ -22,7 +22,6 @@ class BookingPresenter < BasePresenter
     def measure(s,unit,i,base=0)
       "#{s}: #{unit*i+base}px"
     end
-    def minutes(time) time.hour*60+time.min end
     def left(booking)
       units = units(booking.start_at,BASE_TIME)
       measure("left", UNIT_WIDTH, units, 1)
@@ -31,7 +30,7 @@ class BookingPresenter < BasePresenter
       "top: #{10*table_no+5}px"
     end
     def units(stop,start)
-      (minutes(stop)-minutes(start))/60.0
+      (Booking.minutes(stop)-Booking.minutes(start))/60.0
     end
     def width(booking)
       units = units(booking.end_at, booking.start_at) 

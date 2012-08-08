@@ -26,6 +26,9 @@ ja:
       calendar: カレンダー
       reserve: 予約する
 
+  alerts:
+    no_table_available: "あの時間間隔でテーブルがありません"
+
   date:
     abbr_day_names:
     - 日

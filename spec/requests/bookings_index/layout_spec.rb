@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Bookings index", focus:true do
+describe "Bookings index" do
   context "without bookings" do
     before(:each) do
       visit bookings_path(month:'2012/7')
