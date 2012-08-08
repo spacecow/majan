@@ -1,4 +1,4 @@
-class DayPresenter < BasePresenter
+class BookingPresenter < BasePresenter
   TABLE_BASE_HEIGHT = 20
   TABLE_INC_HEIGHT = 10
   BASE_TIME = Time.zone.parse('8:000')

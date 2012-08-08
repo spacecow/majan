@@ -12,15 +12,14 @@ describe "Bookings index" do
 
     it "has links to detail bookingss" do
       div(:calendar).click_link('1')
-      page.current_path.should eq day_path('2012-07-01') 
+      page.current_path.should eq detail_bookings_path
       page.should have_title('2012-07-01')
     end
   end
 
-  context "with bookings", focus:true do
+  context "with bookings" do
     before(:each) do
-      day = FactoryGirl.create(:day, date:Date.parse('2012-7-2'))
-      FactoryGirl.create(:booking, day:day)
+      FactoryGirl.create(:booking, date:Date.parse('2012-7-2'))
       visit bookings_path(month:'2012/7')
     end
 

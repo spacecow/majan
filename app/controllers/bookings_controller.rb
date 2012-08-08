@@ -13,10 +13,16 @@ class BookingsController < ApplicationController
     @date = params[:date]
     @booking = Booking.book(params[:booking], @date)
     if @booking.save
-      redirect_to day_path(@date)
+      redirect_to detail_bookings_path(date:@date)
     else
       flash[:alert] = 'No table is available.' if @booking.errors[:start_at].empty? and @booking.errors[:end_at].empty?
       render :new
     end
+  end
+
+  def detail
+    @date = Date.parse(params[:date])
+    bookings = Booking.find_all_by_date(@date) || []
+    @hash = bookings.group_by{|e| e.majan_table.no}
   end
 end

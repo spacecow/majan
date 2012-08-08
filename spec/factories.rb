@@ -3,7 +3,7 @@ FactoryGirl.define do
     start_at Time.zone.parse('12:00')
     end_at Time.zone.parse('14:00')
     name 'Factory Name'
-    day
+    date Date.parse('2012-2-29')
     majan_table
   end
 

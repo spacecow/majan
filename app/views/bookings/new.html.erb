@@ -9,6 +9,6 @@
   <%= f.button :submit, :class => :submit %>
 <% end %>
 
-<%= button_to t('helpers.submit.cancel'), day_path(@date), {:method => :get, :class => :cancel} %>
+<%= button_to t('helpers.submit.cancel'), detail_bookings_path(date:@date), {:method => :get, :class => :cancel} %>
 
 <div class="clear">

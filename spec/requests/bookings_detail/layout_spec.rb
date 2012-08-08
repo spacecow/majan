@@ -1,14 +1,10 @@
 require 'spec_helper'
 
-describe "Day show" do
-  before(:each) do
-    @day = FactoryGirl.create(:day, date:'2012-7-2')
-  end
-
+describe "Bookings detail" do
   context "without bookings" do
     before(:each) do
       FactoryGirl.create(:majan_table)
-      visit day_path(@day)
+      visit detail_bookings_path(date:'2012-7-2')
     end
 
     it "has a date title" do
@@ -33,8 +29,8 @@ describe "Day show" do
   context "with booking on right day" do
     before(:each) do
       table = FactoryGirl.create(:majan_table)
-      FactoryGirl.create(:booking, day:@day, majan_table:table, start_at:Time.parse("12:00"), end_at:Time.parse("14:15"), name:'Ben Dover')
-      visit day_path(@day)
+      FactoryGirl.create(:booking, date:Date.parse('2012-7-2'), majan_table:table, start_at:Time.parse("12:00"), end_at:Time.parse("14:15"), name:'Ben Dover')
+      visit detail_bookings_path(date:'2012-7-2')
     end
 
     it "one class for each booking" do
@@ -48,9 +44,8 @@ describe "Day show" do
   context "with booking on wrong day" do
     before(:each) do
       table = FactoryGirl.create(:majan_table)
-      tomorrow = FactoryGirl.create(:day, date:'2012-7-3')
-      FactoryGirl.create(:booking, day:tomorrow, majan_table:table)
-      visit day_path(@day)
+      FactoryGirl.create(:booking, date:Date.parse('2012-7-3'))
+      visit detail_bookings_path(date:'2012-7-2')
     end
 
     it "shows no bookings" do

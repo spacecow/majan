@@ -7,3 +7,5 @@
   todo: change detail to day :done
 437c22: !ruby/object:Dooby::Task 
   todo: display bookings on schedule
+f4cafa: !ruby/object:Dooby::Task 
+  todo: change back to detail :done

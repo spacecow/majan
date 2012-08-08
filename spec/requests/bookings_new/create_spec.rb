@@ -8,46 +8,30 @@ describe "Bookings new" do
     fill_in 'Name', with:'Ben Dover'
   end
 
-  context "fail with existing day but" do
+  context "fail with" do
     context "no table" do
-      before(:each) do 
-        FactoryGirl.create(:day, date:Date.parse('2012-7-2'))
-      end
-
-      it "day is already saved" do
-        lambda{ click_button 'Book'
-        }.should change(Day,:count).by(0)
-        Day.count.should be 1
-      end
       it "tables are already saved" do
         lambda{ click_button 'Book'
         }.should change(MajanTable,:count).by(0)
         MajanTable.count.should be 0
       end
-      it "saves a booking to db" do
+      it "saves no booking to db" do
         lambda{ click_button 'Book'
         }.should change(Booking,:count).by(0)
         Booking.count.should be 0
       end
-
       it "displays flash" do
         click_button 'Book'
         page.should have_alert('No table is available.') 
       end
     end
 
-    context "booked table" do
+    context "fully booked table" do
       before(:each) do 
-        day = FactoryGirl.create(:day, date:Date.parse('2012-7-2'))
         table = FactoryGirl.create(:majan_table)
-        FactoryGirl.create(:booking, majan_table:table, day:day, start_at:Time.parse('13:00'), end_at:Time.parse('15:00'))
+        FactoryGirl.create(:booking, majan_table:table, date:Date.parse('2012-7-2'), start_at:Time.parse('13:00'), end_at:Time.parse('15:00'))
       end
 
-      it "day is already saved" do
-        lambda{ click_button 'Book'
-        }.should change(Day,:count).by(0)
-        Day.count.should be 1
-      end
       it "saves no tables to db" do
         lambda{ click_button 'Book'
         }.should change(MajanTable,:count).by(0)
@@ -58,23 +42,21 @@ describe "Bookings new" do
         }.should change(Booking,:count).by(0)
         Booking.count.should be 1
       end
+      it "displays flash" do
+        click_button 'Book'
+        page.should have_alert('No table is available.') 
+      end
     end
   end
 
   it "create without existing day"
 
-  context "create with existing day but with unused table" do
+  context "create with unused table" do
     before(:each) do 
-      day = FactoryGirl.create(:day, date:Date.parse('2012-7-2'))
       table = FactoryGirl.create(:majan_table)
-      FactoryGirl.create(:booking, majan_table:table, day:day, start_at:Time.parse('8:00'), end_at:Time.parse('10:00'))
+      FactoryGirl.create(:booking, majan_table:table, date:Date.parse('2012-7-2'), start_at:Time.parse('8:00'), end_at:Time.parse('10:00'))
     end
 
-    it "saves the day to db" do
-      lambda{ click_button 'Book'
-      }.should change(Day,:count).by(0)
-      Day.count.should be 1
-    end
     it "saves the tables to db" do
       lambda{ click_button 'Book'
       }.should change(MajanTable,:count).by(0)
@@ -92,8 +74,8 @@ describe "Bookings new" do
         @booking = Booking.last
       end
 
-      it "a day reference" do
-        @booking.day.should eq Day.last 
+      it "the date" do
+        @booking.date.should eq Date.parse('2012-7-2')
       end
       it "a table reference" do
         @booking.majan_table.should eq MajanTable.last 
@@ -110,7 +92,8 @@ describe "Bookings new" do
       end
 
       it "and redirect back to the day page" do
-        page.current_path.should eq day_path('2012-07-02')
+        page.current_path.should eq detail_bookings_path
+        page.should have_title('2012-07-02')
       end
     end
   end
@@ -124,7 +107,8 @@ describe "Bookings new" do
 
       it "redirect back to the detail page" do
         click_button 'Cancel'
-        page.current_path.should eq day_path('2012-07-02')
+        page.current_path.should eq detail_bookings_path
+        page.should have_title('2012-07-02')
       end
     end
 
@@ -136,7 +120,8 @@ describe "Bookings new" do
       end
 
       it "redirect back to the detail page" do
-        page.current_path.should eq day_path('2012-07-02')
+        page.current_path.should eq detail_bookings_path
+        page.should have_title('2012-07-02')
       end
     end
   end

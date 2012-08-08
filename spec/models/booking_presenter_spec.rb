@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe DayPresenter do
+describe BookingPresenter do
   before(:each) do
-    @presenter = DayPresenter.new(Day.new, nil)
+    @presenter = BookingPresenter.new(Booking.new, nil)
   end
 
   context "top" do
