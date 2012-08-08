@@ -146,6 +146,12 @@ describe "Bookings new" do
       click_button 'Book'
       div(:start_at).should have_error "must be less than or equal to 18:00"
     end
+    it "start cannot be greater than end" do
+      fill_in 'Start at', with:'15:00'
+      fill_in 'End at', with:'12:00'
+      click_button 'Book'
+      div(:start_at).should have_error "cannot start after end"
+    end
 
     it "end at cannot be left blank" do
       fill_in 'End at', with:''

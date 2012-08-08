@@ -6,6 +6,7 @@ class Booking < ActiveRecord::Base
   validates_presence_of :start_at, :end_at, :date, :name
   validate :start_at_time_span
   validate :end_at_time_span
+  validate :start_before_end
 
   BASE_TIME_START = Time.parse('8:00')
   BASE_TIME_END   = Time.parse('18:00')
@@ -86,6 +87,14 @@ class Booking < ActiveRecord::Base
         errors.add(:end_at, I18n.t("errors.messages.greater_than_or_equal_to",count:BASE_TIME_START.strftime("%k:%M")))
       elsif Booking.minutes(BASE_TIME_END) - Booking.minutes(self.end_at) < 0
         errors.add(:end_at, I18n.t("errors.messages.less_than_or_equal_to",count:BASE_TIME_END.strftime("%k:%M")))
+      end
+    end
+
+    def start_before_end
+      return if start_at.nil?
+      return if end_at.nil?
+      if Booking.minutes(self.end_at) - Booking.minutes(self.start_at) < 0
+        errors.add(:start_at, "cannot start after end")
       end
     end
 end
