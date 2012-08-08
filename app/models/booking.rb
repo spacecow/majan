@@ -94,7 +94,7 @@ class Booking < ActiveRecord::Base
       return if start_at.nil?
       return if end_at.nil?
       if Booking.minutes(self.end_at) - Booking.minutes(self.start_at) < 0
-        errors.add(:start_at, "cannot start after end")
+        errors.add(:start_at, I18n.t("errors.messages.start_before_end"))
       end
     end
 end

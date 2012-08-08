@@ -44,7 +44,7 @@ describe "Bookings new" do
       end
       it "displays flash" do
         click_button 'Book'
-        page.should have_alert('No table is available for that time interval.') 
+        page.should have_alert('No table is available for that time interval') 
       end
     end
   end
@@ -150,7 +150,7 @@ describe "Bookings new" do
       fill_in 'Start at', with:'15:00'
       fill_in 'End at', with:'12:00'
       click_button 'Book'
-      div(:start_at).should have_error "cannot start after end"
+      div(:start_at).should have_error "must start before end"
     end
 
     it "end at cannot be left blank" do
@@ -172,7 +172,7 @@ describe "Bookings new" do
     it "displays no flash" do
       fill_in 'Start at', with:''
       click_button 'Book'
-      page.should_not have_alert('No table is available for that time interval.') 
+      page.should_not have_alert('No table is available for that time interval') 
     end
   end
 end

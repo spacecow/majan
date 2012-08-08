@@ -144,6 +144,7 @@ ja:
       not_a_number: は数値で入力してください。
       not_an_integer: は整数で入力してください。
       odd: は奇数にしてください。
+      start_before_end: は終了時間の前にして下さい 
       record_invalid: バリデーションに失敗しました。 %{errors}
       taken: はすでに存在します。
       too_long: は%{count}文字以内で入力してください。

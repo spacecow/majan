@@ -16,10 +16,14 @@ en:
 
   helpers:
     submit:
+      create: Book
       booking:
-        create: Book
       cancel: Cancel
       reserve: Reserve
 
   alerts:
-    no_table_available: "No table is available for that time interval."
+    no_table_available: No table is available for that time interval
+
+  errors: &errors
+    messages:
+      start_before_end: must start before end 
