@@ -20,6 +20,10 @@ describe "Bookings new" do
     value('* End at').should be_nil 
   end
 
+  it "has the name field blank" do
+    value('* Name').should be_nil
+  end
+
   it "has a create button" do
     page.should have_button('Book')
   end

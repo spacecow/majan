@@ -5,6 +5,7 @@ describe "Bookings new" do
     visit new_booking_path(date:'2012-7-2')
     fill_in '* Start at', with:'12:10'
     fill_in '* End at', with:'14:15'
+    fill_in 'Name', with:'Ben Dover'
   end
 
   context "fail with existing day but" do
@@ -103,6 +104,9 @@ describe "Bookings new" do
       end
       it "the end time" do
         @booking.end_at.strftime("%H:%M").should eq "14:15"
+      end
+      it "the name of the player" do
+        @booking.name.should eq "Ben Dover"
       end
 
       it "and redirect back to the day page" do

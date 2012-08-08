@@ -3,5 +3,7 @@
   todo: end time must be later than start time
 105aea: !ruby/object:Dooby::Task 
   todo: change detail to day :done
-260a1d: !ruby/object:Dooby::Task 
-  todo: change tables to games :doing
+3cf03d: !ruby/object:Dooby::Task 
+  todo: add name to booking :doing
+64ee73: !ruby/object:Dooby::Task 
+  todo: add name to booking :done

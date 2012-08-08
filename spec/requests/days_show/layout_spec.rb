@@ -33,13 +33,15 @@ describe "Day show" do
   context "with booking on right day" do
     before(:each) do
       table = FactoryGirl.create(:majan_table)
-      FactoryGirl.create(:booking, day:@day, majan_table:table)
-#, reserved_on:Date.parse('2012-7-2'))
+      FactoryGirl.create(:booking, day:@day, majan_table:table, start_at:Time.parse("12:00"), end_at:Time.parse("14:15"), name:'Ben Dover')
       visit day_path(@day)
     end
 
     it "one class for each booking" do
       div(:bookings).divs_no(:booking).should be(1)
+    end
+    it "the booking should have a tooltip" do
+      div(:booking,0).span(:tooltip).should have_content('12:00~14:15 Ben Dover')
     end
   end
 

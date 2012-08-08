@@ -2,14 +2,18 @@ class Booking < ActiveRecord::Base
   belongs_to :majan_table
   belongs_to :day
 
-  attr_accessible :start_at, :end_at, :day_id, :majan_table_id
+  attr_accessible :start_at, :end_at, :day_id, :majan_table_id, :name
 
-  validates_presence_of :start_at, :end_at, :day, :majan_table
+  validates_presence_of :start_at, :end_at, :day, :majan_table, :name
 
   def collision?(params)
     return false if Booking.before(Time.parse(params[:start_at]), start_at) and Booking.before(Time.parse(params[:end_at]), start_at)
     return false if Booking.after(Time.parse(params[:start_at]), end_at) and Booking.after(Time.parse(params[:end_at]), end_at)
     return true
+  end
+
+  def info
+    "#{start_at.strftime('%k:%M')}~#{end_at.strftime('%k:%M')} #{name}"
   end
 
   class << self

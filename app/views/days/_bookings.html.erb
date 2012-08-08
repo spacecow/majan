@@ -27,6 +27,7 @@
       <% @hash.keys.each do |table_no| %>
         <% @hash[table_no].each_with_index do |booking,i| %>
           <div class="booking" <%= presenter.booking_style(table_no,i,booking) %>>
+            <span id="tooltip"><%= booking.info %></span>
           </div>
         <% end %>
       <% end %>
