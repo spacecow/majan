@@ -1,9 +1,9 @@
 --- 
 4d1adc: !ruby/object:Dooby::Task 
   todo: end time must be later than start time
-105aea: !ruby/object:Dooby::Task 
-  todo: change detail to day :done
-3cf03d: !ruby/object:Dooby::Task 
-  todo: add name to booking :doing
 64ee73: !ruby/object:Dooby::Task 
   todo: add name to booking :done
+105aea: !ruby/object:Dooby::Task 
+  todo: change detail to day :done
+437c22: !ruby/object:Dooby::Task 
+  todo: display bookings on schedule
