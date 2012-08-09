@@ -6,14 +6,34 @@ $alert_dark: #933
 $notice_dark: #396
 $alert_light: #f33
 $notice_light: #4CC417
+$blue: #4B7399
 
 html
   background: #4B7399
+
+a
+  text-decoration: none 
+  color: $blue
+  text-shadow: 1px 1px 1px #aaa
+  &:hover
+    color: #eee
+    text-shadow: 1px 1px 1px $blue 
 
 div.clear
   clear: both
   height: 0
   overflow: hidden
+
+@mixin white-gradient
+  color: black
+  font-weight: bold
+  padding: 5px
+  +border-radius(10px)
+  +background-image(linear-gradient(color-stops(gray, white)))
+
+div#user_nav
+  float: right
+  +white-gradient
 
 div#main_container
   width: 800px

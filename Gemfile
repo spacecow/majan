@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem "watu_table_builder", :require => "table_builder"
 gem "simple_form"
+gem 'cancan'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -13,7 +14,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'compass-rails'
   gem "fancy-buttons", :git => 'https://github.com/imathis/fancy-buttons.git'
-
+  gem 'bcrypt-ruby'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 end
 

@@ -2,9 +2,11 @@ ja:
   booking: 
     one: 予約
     other: 予約s
+  login: ログイン
+  table: テーブル %{no}
+
   labels:
     new: 新しい%{o}
-  table: テーブル %{no}
 
   simple_form:
     labels:
@@ -27,7 +29,8 @@ ja:
       reserve: 予約する
 
   alerts:
-    no_table_available: "あの時間間隔でテーブルがありません"
+    no_table_available: あの時間間隔でテーブルがありません
+    invalid_login_or_password: 無効パスワードかユーザー名
 
   date:
     abbr_day_names:

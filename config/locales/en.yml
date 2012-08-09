@@ -5,6 +5,7 @@ en:
   booking:
     one: Booking
     other: Bookings
+  login: Login
 
   labels:
     new: New %{o}
@@ -22,7 +23,14 @@ en:
       reserve: Reserve
 
   alerts:
+    invalid_login_or_password: Invalid login or password
     no_table_available: No table is available for that time interval
+  
+  messages:
+    logged_in_as: Logged in as %{name}
+
+  notices:
+    logged_in: Logged in
 
   errors: &errors
     messages:

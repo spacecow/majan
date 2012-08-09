@@ -1,0 +1,8 @@
+<div id="user_nav">
+  <% if current_user %>
+    <%= mess(:logged_in_as, name:current_user.userid) %>
+    <%= link_to t(:logout), logout_path %>
+  <% else %>
+    <%= link_to t(:login), login_path %>
+  <% end %>
+</div>

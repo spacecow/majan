@@ -50,6 +50,17 @@ Spork.prefork do
     #Include presenters
     config.include ActionView::TestCase::Behavior, example_group: {file_path: %r{spec/presenters}}
   end
+
+  def controller_actions(controller)
+    Rails.application.routes.routes.inject({}) do |hash, route|
+      if route.requirements[:controller] == controller && !route.verb.nil?
+        verb = route.verb.to_s.split(':')[-1][1..-3].downcase
+        #route.verb.downcase.empty? ? "get" : route.verb.downcase
+        hash[route.requirements[:action]] = verb.empty? ? 'get' : verb
+      end
+      hash
+    end
+  end
 end
 
 Spork.each_run do

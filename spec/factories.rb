@@ -7,9 +7,12 @@ FactoryGirl.define do
     majan_table
   end
 
-  factory :day do
+  factory :majan_table do
   end
 
-  factory :majan_table do
+  factory :user do
+    sequence(:email){|n| "test#{n}@example.com"}
+    sequence(:userid){|n| "tester#{n}"}
+    password 'secret'
   end
 end

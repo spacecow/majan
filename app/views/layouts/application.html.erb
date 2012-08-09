@@ -14,6 +14,7 @@
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <% end %>
     <div class="clear"></div>
+    <%= render 'layouts/user_nav' %>
     <%= yield %>
   </div>
 </div>

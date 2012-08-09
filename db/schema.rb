@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803051935) do
+ActiveRecord::Schema.define(:version => 20120809042831) do
 
   create_table "bookings", :force => true do |t|
     t.integer  "majan_table_id"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20120803051935) do
     t.integer  "no"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "userid"
+    t.integer  "roles_mask"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
