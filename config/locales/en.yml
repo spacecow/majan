@@ -19,8 +19,8 @@ en:
 
   helpers:
     submit:
+      calendar: Calendar
       create: Book
-      booking:
       cancel: Cancel
       reserve: Reserve
 
@@ -36,4 +36,5 @@ en:
 
   errors: &errors
     messages:
+      no_reservations: is a day of no reservations
       start_before_end: must start before end 

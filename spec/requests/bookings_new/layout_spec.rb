@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Bookings new" do
   before(:each) do
-    visit new_booking_path(date:'2012-7-2')
+    visit new_booking_path(date:'2012-7-2', month:'2012/7')
   end
 
   it "has a new booking title" do

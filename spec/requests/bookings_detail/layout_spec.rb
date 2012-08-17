@@ -4,7 +4,7 @@ describe "Bookings detail" do
   context "without bookings" do
     before(:each) do
       FactoryGirl.create(:majan_table)
-      visit detail_bookings_path(date:'2012-7-2')
+      visit detail_bookings_path(date:'2012-7-2', month:'2012/7')
     end
 
     it "has a date title" do
@@ -24,13 +24,20 @@ describe "Bookings detail" do
       page.current_path.should eq new_booking_path
       value('* Date').should eq '2012-07-02'
     end
+
+    it "has a calendar button" do
+      page.should have_button('Calendar')
+      click_button 'Calendar'
+      page.current_path.should eq bookings_path
+      page.should have_content('July 2012')
+    end
   end
 
   context "with booking on right day" do
     before(:each) do
       table = FactoryGirl.create(:majan_table)
       FactoryGirl.create(:booking, date:Date.parse('2012-7-2'), majan_table:table, start_at:Time.parse("12:00"), end_at:Time.parse("14:15"), name:'Ben Dover')
-      visit detail_bookings_path(date:'2012-7-2')
+      visit detail_bookings_path(date:'2012-7-2', month:'2012/7')
     end
 
     it "one class for each booking" do
@@ -45,7 +52,7 @@ describe "Bookings detail" do
     before(:each) do
       table = FactoryGirl.create(:majan_table)
       FactoryGirl.create(:booking, date:Date.parse('2012-7-3'))
-      visit detail_bookings_path(date:'2012-7-2')
+      visit detail_bookings_path(date:'2012-7-2', month:'2012/7')
     end
 
     it "shows no bookings" do

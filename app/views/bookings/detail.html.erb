@@ -4,7 +4,11 @@
 
 <%= form_tag new_booking_path, :method => :get do %>
   <%= hidden_field_tag :date, @date %>
+  <%= hidden_field_tag :month, @month %>
   <%= submit_tag t('helpers.submit.reserve'), :class => :submit %>
 <% end %>
 
-<%= button_to t('helpers.submit.calendar'), bookings_path, {:method => :get, :class => :cancel} %>
+<%= form_tag bookings_path, :method => :get do %>
+  <%= hidden_field_tag :month, @month %>
+  <%= submit_tag t('helpers.submit.calendar'), :class => :cancel %>
+<% end %>

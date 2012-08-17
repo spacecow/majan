@@ -7,6 +7,7 @@ class Booking < ActiveRecord::Base
   validate :start_at_time_span
   validate :end_at_time_span
   validate :start_before_end
+  validate :day_availability
 
   BASE_TIME_START = Time.parse('8:00')
   BASE_TIME_END   = Time.parse('18:00')
@@ -71,6 +72,10 @@ class Booking < ActiveRecord::Base
   end
 
   private
+
+    def day_availability
+      errors.add(:date, I18n.t("errors.messages.no_reservations")) if Day.exists?(date:self.date)
+    end
 
     def start_at_time_span
       return if start_at.nil?

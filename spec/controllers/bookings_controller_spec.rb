@@ -11,16 +11,16 @@ describe BookingsController do
   describe "a user is not logged in" do
     controller_actions.each do |action,req|
       it "should reach the #{action} page" do
-        send("#{req}", "#{action}", :id => @model.id, date:'2012-7-2')
+        send("#{req}", "#{action}", :id => @model.id, date:'2012-7-2', month:'2012/7')
         response.redirect_url.should_not eq login_url 
       end
     end
   end
 
-  it "the detail page cannot be reach if that day is disabled", focus:true do
+  it "the detail page cannot be reach if that day is disabled" do
     date = '2012-7-2'
     FactoryGirl.create(:day,date:Date.parse(date))
-    get(:detail, date:date)
+    get(:detail, date:date, month:'2012/7')
     response.redirect_url.should eq bookings_url(month:'2012/07')
   end
 end

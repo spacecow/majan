@@ -1,15 +1,17 @@
 <%= title new(:booking) %>
 
 <%= simple_form_for @booking do |f| %>
-  <%= f.input :date, :as => :string %>
+  <%= f.input :date, :as => :string, wrapper_html:{id:'date'} %>
   <%= f.input :start_at, :as => :string, wrapper_html:{id:'start_at'} %>
   <%= f.input :end_at, :as => :string, wrapper_html:{id:'end_at'} %>
   <%= f.input :name %>
+  <%= hidden_field_tag :month, @month %>
   <%= f.button :submit, :class => :submit %>
 <% end %>
 
 <%= form_tag detail_bookings_path, :method => :get do %>
   <%= hidden_field_tag :date, @booking.date %>
+  <%= hidden_field_tag :month, @month %>
   <%= submit_tag t('helpers.submit.cancel'), :class => :cancel %>
 <% end %>
 

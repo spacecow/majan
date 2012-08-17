@@ -1,4 +1,8 @@
+require 'assert'
+
 class BookingsController < ApplicationController
+  before_filter :set_month, :only => [:new,:create,:detail]
+
   def index
     @month = params[:month] ? Date.parse(params[:month]) : Date.today
     @bookings = Booking.all
@@ -15,7 +19,7 @@ class BookingsController < ApplicationController
     if @booking.valid?
       if @booking.book
         @booking.save
-        redirect_to detail_bookings_path(date:@booking.date)
+        redirect_to detail_bookings_path(date:@booking.date, month:@month)
       else
         flash[:alert] = alertify(:no_table_available) 
         render :new
@@ -31,4 +35,11 @@ class BookingsController < ApplicationController
     bookings = Booking.find_all_by_date(@date) || []
     @hash = bookings.group_by{|e| e.majan_table.no}
   end
+
+  private
+
+    def set_month
+      @month = Date.parse(params[:month])
+      assert_not_nil(@month) if $AVLUSA
+    end
 end

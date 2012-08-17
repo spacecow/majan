@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Bookings new" do
   before(:each) do
-    visit new_booking_path(date:'2012-7-2')
+    visit new_booking_path(date:'2012-7-2',month:'2012/7')
     fill_in '* Start at', with:'12:10'
     fill_in '* End at', with:'14:15'
     fill_in 'Name', with:'Ben Dover'
@@ -129,6 +129,14 @@ describe "Bookings new" do
   context "error with pre-existing booking" do
     before(:each) do
       FactoryGirl.create(:booking, date:Date.parse('2012-7-2'))
+    end
+
+    it "date cannot be disabled" do
+      date = '2012-7-15'
+      FactoryGirl.create(:day, date:Date.parse(date))
+      fill_in 'Date', with:date
+      click_button 'Book'
+      div(:date).should have_error "is a day of no reservations"
     end
 
     it "start at cannot be left blank" do

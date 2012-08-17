@@ -15,18 +15,18 @@ describe Day do
 
   describe "#days_in_month" do
     it "returns the days in that month" do
-      d0816 = FactoryGirl.create(:day,date:Date.parse('2012-8-16'))
-      Day.days_in_month('2012-8').should eq [d0816]
+      day = FactoryGirl.create(:day,date:Date.parse('2012-7-30'))
+      Day.calendar_days_in_month('2012-8').should eq [day]
     end
 
     it "returns no days before that month" do
-      d0731 = FactoryGirl.create(:day,date:Date.parse('2012-7-31'))
-      Day.days_in_month('2012-8').should be_empty
+      FactoryGirl.create(:day,date:Date.parse('2012-7-28'))
+      Day.calendar_days_in_month('2012-8').should be_empty
     end
 
     it "returns no days after that month" do
-      d0931 = FactoryGirl.create(:day,date:Date.parse('2012-9-30'))
-      Day.days_in_month('2012-8').should be_empty
+      FactoryGirl.create(:day,date:Date.parse('2012-9-2'))
+      Day.calendar_days_in_month('2012-8').should be_empty
     end
   end
 end

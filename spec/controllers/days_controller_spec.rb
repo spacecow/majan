@@ -23,7 +23,7 @@ describe DaysController do
       end
       controller_actions.each do |action,req|
         it "should reach the #{action} page" do
-          send(req, action, id:@model.id, day:{date:Date.parse('2012-7-2')})
+          send(req, action, id:@model.id, day:{date:Date.parse('2012-7-2')}, month:'2012/7')
           response.redirect_url.should_not eq welcome_url
         end
       end

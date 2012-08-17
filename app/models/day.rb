@@ -4,8 +4,12 @@ class Day < ActiveRecord::Base
   validates :date, presence:true, uniqueness:true
 
   class << self
-    def days_in_month(month)
-      Day.where('date >= ? and date <= ?', Date.parse("#{month}-1").beginning_of_month, Date.parse("#{month}-1").end_of_month) 
+    def calendar_days_in_month(month)
+      first_day = Date.parse("#{month}-1").beginning_of_month
+      first_day -= 1.day until first_day.sunday?
+      last_day = Date.parse("#{month}-1").end_of_month 
+      last_day += 1.day until last_day.saturday?
+      Day.where('date >= ? and date <= ?', first_day, last_day)
     end
   end
 end

@@ -15,3 +15,5 @@ b819f4: !ruby/object:Dooby::Task
   todo: login :done
 bf6266: !ruby/object:Dooby::Task 
   todo: disable day :done
+085bb3: !ruby/object:Dooby::Task 
+  todo: month and date param :done

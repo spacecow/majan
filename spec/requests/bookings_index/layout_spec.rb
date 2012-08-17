@@ -8,7 +8,7 @@ describe "Bookings index" do
     end
 
     it "has a date title" do
-      page.should have_content('July')
+      page.should have_content('July 2012')
     end
 
     it "has links to detail bookings" do
@@ -18,7 +18,7 @@ describe "Bookings index" do
     end
 
     it "has no links to bookings if day is disabled" do
-      td(:day_15).should_not have_link('15')
+      td(:day_0715).should_not have_link('15')
     end
 
     it "non-admin cannot disable days" do
@@ -34,10 +34,10 @@ describe "Bookings index" do
     end
 
     it "enabled day should have disable link" do
-      td(:day_16).should have_link('Disable')
+      td(:day_0716).should have_link('Disable')
     end
     it "disabled day should have enable link" do
-      td(:day_15).should have_link('Enable')
+      td(:day_0715).should have_link('Enable')
     end
   end
 
@@ -48,13 +48,13 @@ describe "Bookings index" do
 
     it "single" do
       visit bookings_path(month:'2012/7')
-      div(:bookings,0).should have_content('Booking: 1')
+      td(:day_0702).should have_content('Booking: 1')
     end
 
     it "double" do
       FactoryGirl.create(:booking, date:Date.parse('2012-7-2'))
       visit bookings_path(month:'2012/7')
-      div(:bookings,0).should have_content('Bookings: 2')
+      td(:day_0702).should have_content('Bookings: 2')
     end
   end
 end
