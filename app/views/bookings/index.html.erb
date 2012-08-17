@@ -1,8 +1,8 @@
 <% content_for(:css) do %>
   <style type="text/css">
-  <% Day.calendar_days_in_month(@month).each do |day| %>
-    td#day_<%= day.date.strftime("%m%d") %> {background:tomato;}
-  <% end %>
+    <% Day.calendar_days_in_month(@month).each do |day| %>
+      div#calendar td#day_<%= day.date.strftime("%m%d") %> {background-color: tomato;}
+    <% end %>
   </style>
 <% end %>
 

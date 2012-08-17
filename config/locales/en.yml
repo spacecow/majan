@@ -33,6 +33,7 @@ en:
 
   notices:
     logged_in: Logged in
+    logged_out: Logged out
 
   errors: &errors
     messages:

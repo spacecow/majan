@@ -38,6 +38,10 @@ ja:
   messages:
     logged_in_as: '%{name}でログインされた'
 
+  notices:
+    logged_in: ログインしました 
+    logged_out: ログアウトしました 
+
   date:
     abbr_day_names:
     - 日

@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_url
+    session_userid(nil)
+    redirect_to root_url, notice:notify(:logged_out)
   end
 end

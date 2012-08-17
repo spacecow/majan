@@ -1,7 +1,10 @@
 @import "compass/css3/border-radius"
 @import "fancy-buttons"
 
-$flash_width: 300px
+$flash_border_width: 1px
+$flash_left_padding_width: 40px
+$flash_width: 600px - $flash_left_padding_width - 2*$flash_border_width
+
 $alert_dark: #933
 $notice_dark: #396
 $alert_light: #f33
@@ -42,32 +45,31 @@ div#main_container
   border: 10px solid white
   +border-radius(10px)
 
-@mixin custom_gradient($light, $dark, $corner: 10px)
+@mixin custom_gradient($light, $dark, $corner: 10px, $border_width:1px)
   color: white
   font-weight: bold
-  padding: 5px
+  padding-bottom: 5px
+  padding-top: 5px
+  border: $border_width solid black
   +border-radius($corner)
   +background-image(linear-gradient(color-stops($light, $dark)))
 
-div#flash_notice
-  float: left  
-  width: $flash_width
-  text-align: center
-  margin-bottom: 10px 
-  padding: 3px 10px
-  border: 1px solid black
-  +custom_gradient($notice_light,$notice_dark)
-div#flash_alert
+@mixin flash
   float: left
   width: $flash_width
-  text-align: center
-  margin-bottom: 10px
-  padding: 3px 10px
-  border: 1px solid black
+  padding-left: $flash_left_padding_width 
+  margin-bottom: 10px 
+
+div#flash_notice
+  +flash
+  +custom_gradient($notice_light,$notice_dark)
+
+div#flash_alert
+  +flash
   +custom_gradient($alert_light,$alert_dark)
 
 div#page
-  width: 660px
+  width: 600px
   margin: 20px auto
   
 div#calendar
