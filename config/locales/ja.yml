@@ -3,6 +3,7 @@ ja:
     one: 予約
     other: 予約s
   login: ログイン
+  logout: ログアウト
   table: テーブル %{no}
 
   labels:
@@ -31,6 +32,9 @@ ja:
   alerts:
     no_table_available: あの時間間隔でテーブルがありません
     invalid_login_or_password: 無効パスワードかユーザー名
+
+  messages:
+    logged_in_as: '%{name}でログインされた'
 
   date:
     abbr_day_names:

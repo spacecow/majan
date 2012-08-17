@@ -5,6 +5,8 @@ en:
   booking:
     one: Booking
     other: Bookings
+  disable: Disable
+  enable: Enable
   login: Login
 
   labels:

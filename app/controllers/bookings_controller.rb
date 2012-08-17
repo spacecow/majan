@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
 
   def detail
     @date = Date.parse(params[:date])
+    redirect_to bookings_url(month:@date.strftime("%Y/%m")) if Day.exists?(date:@date)
     bookings = Booking.find_all_by_date(@date) || []
     @hash = bookings.group_by{|e| e.majan_table.no}
   end

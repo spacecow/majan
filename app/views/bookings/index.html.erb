@@ -1,18 +1,25 @@
-<div id="calendar">
-  <h2 id="month">
-    <%= link_to "<", month:(@month.beginning_of_month-1).strftime("%Y/%m") %>
-    <%= "#{t('date.month_names')[@month.strftime("%m_").to_i]} #{@month.strftime("%Y")}" %>
-    <%= link_to ">", month:(@month.end_of_month+1).strftime("%Y/%m") %>
-  </h2>
-  <%= calendar_for @bookings, year:@month.year, month:@month.month do |calendar| %>
-    <%= calendar.head(t('date.day_names')[0], t('date.day_names')[1], t('date.day_names')[2], t('date.day_names')[3], t('date.day_names')[4], t('date.day_names')[5], t('date.day_names')[6]) %>
-    <% calendar.day do |date, bookings| %>
-      <%= link_to date.day, detail_bookings_path(date:date.strftime("%Y-%m-%d")) %>
-      <% if bookings.present? %>
-        <div class="bookings">
-          <%= "#{pl(:booking,bookings.count)}: #{bookings.count}" %>
-        </div>
+<% content_for(:css) do %>
+  <style type="text/css">
+  <% Day.days_in_month(@month).each do |day| %>
+    td#day_<%= day.date.strftime("%d") %> {background:tomato;}
+  <% end %>
+  </style>
+<% end %>
+
+<% present Day do |presenter| %>
+  <div id="calendar">
+    <h2 id="month">
+      <%= link_to "<", month:(@month.beginning_of_month-1).strftime("%Y/%m") %>
+      <%= "#{t('date.month_names')[@month.strftime("%m_").to_i]} #{@month.strftime("%Y")}" %>
+      <%= link_to ">", month:(@month.end_of_month+1).strftime("%Y/%m") %>
+    </h2>
+    <%= calendar_for @bookings, year:@month.year, month:@month.month do |calendar| %>
+      <%= calendar.head(t('date.day_names')[0], t('date.day_names')[1], t('date.day_names')[2], t('date.day_names')[3], t('date.day_names')[4], t('date.day_names')[5], t('date.day_names')[6]) %>
+      <% calendar.day(:id => 'day_%d') do |date, bookings| %>
+        <%= presenter.booking_link(date) %>
+        <%= presenter.toggle_availability(date) %>
+        <%= presenter.booking_count(bookings) %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

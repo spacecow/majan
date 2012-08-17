@@ -7,6 +7,10 @@ FactoryGirl.define do
     majan_table
   end
 
+  factory :day do
+    date Date.parse('2012-7-1')
+  end
+
   factory :majan_table do
   end
 

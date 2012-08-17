@@ -4,6 +4,7 @@ Majan::Application.routes.draw do
   resources :sessions, :only => [:new,:create,:destroy]
   resources :users, :only => :show
 
+  resources :days, :only => [:create,:destroy]
   resources :tables, :only => :index
   resources :bookings, :only => [:index, :new, :create] do
     collection do

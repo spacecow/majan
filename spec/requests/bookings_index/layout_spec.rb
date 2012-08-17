@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe "Bookings index" do
-  context "without bookings" do
+  context "not logged in, without bookings" do
     before(:each) do
+      FactoryGirl.create(:day,date:Date.parse('2012-7-15'))
       visit bookings_path(month:'2012/7')
     end
 
@@ -10,10 +11,33 @@ describe "Bookings index" do
       page.should have_content('July')
     end
 
-    it "has links to detail bookingss" do
+    it "has links to detail bookings" do
       div(:calendar).click_link('1')
       page.current_path.should eq detail_bookings_path
       page.should have_title('2012-07-01')
+    end
+
+    it "has no links to bookings if day is disabled" do
+      td(:day_15).should_not have_link('15')
+    end
+
+    it "non-admin cannot disable days" do
+      page.should_not have_link('Disable')
+    end
+  end
+
+  context "admin" do
+    before(:each) do
+      login_admin
+      FactoryGirl.create(:day,date:Date.parse('2012-7-15'))
+      visit bookings_path(month:'2012/7')
+    end
+
+    it "enabled day should have disable link" do
+      td(:day_16).should have_link('Disable')
+    end
+    it "disabled day should have enable link" do
+      td(:day_15).should have_link('Enable')
     end
   end
 
